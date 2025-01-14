@@ -1,4 +1,6 @@
 import logger from '../configs/logger';
+import {EExamplePost} from "../interfaces/interfaces";
+import {EExampleEnum} from "../enums/enums";
 
 export default class Main {
     constructor() {
@@ -9,9 +11,10 @@ export default class Main {
         return `Main function, number: ${num} and also ${num + 1}`;
     }
 
-    calculate(num1: number, num2: number) {
-        logger.info(`[main_controller](calculate)Calculate function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`);
-        return `Calculate function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`;
+    calculate(data: EExamplePost) {
+        const { num1, num2 } = data;
+        logger.info(`[main_controller](calculate) hello ${EExampleEnum.MAOR} examplePost function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`);
+        return `examplePost function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`;
     }
 
 }
