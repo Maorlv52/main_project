@@ -1,6 +1,6 @@
 export enum EStatuses {
-    INIT = 'INIT',
-    ACTIVE = 'ACTIVE',
-    POSTPONED = 'POSTPONED',
-    CANCELED = 'CANCELED',
+	INIT = 'INIT',
+	ACTIVE = 'ACTIVE',
+	POSTPONED = 'POSTPONED',
+	CANCELED = 'CANCELED',
 }
