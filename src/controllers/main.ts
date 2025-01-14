@@ -4,7 +4,7 @@ export default class Main {
     }
 
     mainFunction() {
-        console.log('Main function');
+        return 'Main function';
     }
 
 }
