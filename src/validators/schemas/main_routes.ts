@@ -13,3 +13,7 @@ export const createUserSchema = Joi.object({
 	name: Joi.string().required(),
 	email: Joi.string().required(),
 });
+
+export const getFunnyTranslationSchema = Joi.object({
+	text: Joi.string().required(),
+});

@@ -3,21 +3,11 @@ import mainRoutes from './routes/main_routes';
 import connectDB from './configs/db';
 import { MAIN_PORT } from './configs/config';
 import logger from './configs/logger';
+import dotenv from 'dotenv'; // Load dotenv first to ensure env variables are available
+
+dotenv.config(); // Loads variables from .env into process.env
 
 const app = express();
-// connectDB();
-//
-// app.use(express.json());
-//
-// app.use('/main', mainRoutes);
-//
-// app.get('/firstReq', (req: Request, res: Response) => {
-//   res.json({ message: 'Happy developing ✨' });
-// });
-//
-// app.listen(MAIN_PORT, () => {
-//   console.log(`Server is running on http://localhost:${MAIN_PORT}`);
-// });
 
 const startServer = async () => {
 	try {
