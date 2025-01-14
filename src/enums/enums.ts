@@ -1,3 +1,6 @@
-export enum EExampleEnum {
-    MAOR = 'MAOR',
+export enum EStatuses {
+    INIT = 'INIT',
+    ACTIVE = 'ACTIVE',
+    POSTPONED = 'POSTPONED',
+    CANCELED = 'CANCELED',
 }

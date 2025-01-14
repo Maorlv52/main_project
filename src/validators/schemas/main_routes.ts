@@ -8,3 +8,8 @@ export const calculateSchema = Joi.object({
     num1: Joi.number().required(),
     num2: Joi.number().required()
 })
+
+export const createUserSchema = Joi.object({
+    name: Joi.string().required(),
+    email: Joi.string().required()
+})
