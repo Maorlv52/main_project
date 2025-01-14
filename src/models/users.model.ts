@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { IUsersModel } from '../interfaces/interfaces';
-import { EStatuses } from '../enums/enums';
+import { EStatuses } from '../enums/usersEnums';
 
 const usersSchema = new mongoose.Schema(
 	{

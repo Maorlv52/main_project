@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { EStatuses } from '../enums/enums';
+import { EStatuses } from '../enums/usersEnums';
 
 export interface IUsersModel {
 	id: mongoose.Types.ObjectId;

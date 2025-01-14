@@ -1,9 +1,10 @@
 import mongoose from 'mongoose';
 import logger from './logger';
+import { MONGO_URI_ADDRESS } from './config';
 // import logger from '../logger.js';
 
 const connectDB = async () => {
-	const mongoURI = process.env.MONGO_URI || 'mongodb://localhost:27017/main';
+	const mongoURI = process.env.MONGO_URI || MONGO_URI_ADDRESS;
 
 	try {
 		await mongoose.connect(mongoURI, {
