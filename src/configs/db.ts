@@ -10,12 +10,12 @@ const connectDB = async () => {
 		await mongoose.connect(mongoURI, {
 			serverSelectionTimeoutMS: 10000, // Wait for MongoDB to respond for 10 seconds
 		});
-		logger.info(`MongoDB connected successfully to: ${mongoURI}`);
+		logger.info(`===> MongoDB connected successfully to: ${mongoURI}`);
 	} catch (err) {
 		if (err instanceof Error) {
-			logger.error(`MongoDB connection error: ${err.message}`);
+			logger.error(`===> MongoDB connection error: ${err.message}`);
 		} else {
-			logger.error('An unknown error occurred while connecting to MongoDB');
+			logger.error('===> An unknown error occurred while connecting to MongoDB');
 		}
 		setTimeout(connectDB, 5000);
 	}

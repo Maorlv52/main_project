@@ -31,10 +31,10 @@ const startServer = async () => {
 		});
 
 		app.listen(MAIN_PORT, () => {
-			logger.info(`Server is running on http://localhost:${MAIN_PORT}`);
+			logger.info(`===> Server is running on http://localhost:${MAIN_PORT}`);
 		});
 	} catch (error) {
-		logger.error('Failed to start server:', error);
+		logger.error('===> Failed to start server:', error);
 	}
 };
 
