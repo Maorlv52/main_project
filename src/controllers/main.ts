@@ -10,4 +10,9 @@ export default class Main {
         return `Main function, number: ${num} and also ${num + 1}`;
     }
 
+    calculate(num1: number, num2: number) {
+        logger.info(`Calculate function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`);
+        return `Calculate function, num1: ${num1}, num2: ${num2} and result: ${num1 + num2}`;
+    }
+
 }
