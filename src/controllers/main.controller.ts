@@ -1,9 +1,10 @@
 import logger from '../configs/logger';
 import { IPartialUsersModel } from '../interfaces/interfaces';
 import UsersQueries from '../services/db_query/usersQueries';
+import { IQueriesUsers } from '../interfaces/queriesUsers';
 
 export default class MainController {
-	private usersQueries: UsersQueries;
+	private usersQueries: IQueriesUsers;
 
 	constructor() {
 		this.usersQueries = new UsersQueries();
