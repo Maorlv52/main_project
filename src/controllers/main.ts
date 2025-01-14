@@ -3,8 +3,8 @@ export default class Main {
         console.log('Main constructor');
     }
 
-    mainFunction() {
-        return 'Main function';
+    mainFunction(num: number) {
+        return `Main function, number: ${num} and also ${num + 1}`;
     }
 
 }

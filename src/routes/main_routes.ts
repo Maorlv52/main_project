@@ -4,14 +4,9 @@ import Main from '../controllers/main';
 const router = Router();
 const main = new Main();
 
-
-router.get('/', (req: Request, res: Response) => {
-  res.json({ message: 'Welcome to the main route!' });
-});
-
 router.get('/about', (req: Request, res: Response) => {
 
-  const result = main.mainFunction();
+  const result = main.mainFunction(1);
   res.json({ message: result });
 });
 
