@@ -25,7 +25,7 @@ export default class MainController {
 				throw new Error('User not created');
 			}
 
-			await this.createUserNotification({
+			return await this.createUserNotification({
 				name: newUser.name,
 				email: newUser.email,
 				status: newUser.status,
@@ -35,7 +35,6 @@ export default class MainController {
 			
 			
 
-			return newUser;
 		} catch (e: any) {
 			logger.error(`[mainController](createUser): error: ${e.message}`);
 			throw new Error(e.message);
@@ -46,12 +45,14 @@ export default class MainController {
 		try {
 
 			const { name, email, status, notificationName, content } = data;
-			
+
+
+			console.log(name, email, status, notificationName, content);
 			const msUpdate = sendAxiosHttpRequest({
 				url: URL_CONFIG.NOTIFICATION_URL,
 				endpoint: NOTIFICATION_ENDPOINTS.CREATE_NOTIFICATION,
 				method: EHttpRequestMethods.POST,
-				payload: { name, email, status, notificationName, content },
+				payload: { email, status, notificationName, content },
 			});
 
 			return msUpdate;
