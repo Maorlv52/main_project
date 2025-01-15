@@ -18,15 +18,15 @@ router.post('/createUser', joiValidator(createUserSchema), async (req: Request, 
 	}
 });
 
-router.post('/getFunnyTranslation', joiValidator(getFunnyTranslationSchema), async (req: Request, res: Response) => {
-	try {
-		const result = await main.getFunnyTranslation(req.body);
-		logger.info(`[main_routes](getFunnyTranslation): successfully getFunnyTranslation`);
-		res.json({ message: result });
-	} catch (e: any) {
-		logger.error(`[main_routes](calculate) error: ${e.message}`);
-		res.status(500).json({ message: e.message });
-	}
-});
+// router.post('/getFunnyTranslation', joiValidator(getFunnyTranslationSchema), async (req: Request, res: Response) => {
+// 	try {
+// 		const result = await main.getFunnyTranslation(req.body);
+// 		logger.info(`[main_routes](getFunnyTranslation): successfully getFunnyTranslation`);
+// 		res.json({ message: result });
+// 	} catch (e: any) {
+// 		logger.error(`[main_routes](calculate) error: ${e.message}`);
+// 		res.status(500).json({ message: e.message });
+// 	}
+// });
 
 export default router;

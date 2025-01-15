@@ -1,9 +1,10 @@
 export interface IUrlConfig {
 	BASE_URL: string;
+	NOTIFICATION_URL: string;
 }
 
 export interface IMsEndpointsConfig {
-	EXAMPLE_ENDPOINT: string;
+	CREATE_NOTIFICATION: string;
 }
 
 export interface IMsPorts {

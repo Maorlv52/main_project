@@ -9,10 +9,11 @@ export const AXIOS_CONFIG = {
 
 export const URL_CONFIG: IUrlConfig = {
 	BASE_URL: env.get('BASE_URL').required().example('http://localhost:3000').default('http://localhost:3000').asString(),
+	NOTIFICATION_URL: env.get('NOTIFICATION_URL').required().example('http://localhost:3001').default('http://localhost:3001').asString(),
 };
 
-export const MS_ENDPOINTS: IMsEndpointsConfig = {
-	EXAMPLE_ENDPOINT: env.get('EXAMPLE_ENDPOINT').required().example('/example').default('/example').asString(),
+export const NOTIFICATION_ENDPOINTS: IMsEndpointsConfig = {
+	CREATE_NOTIFICATION: env.get('CREATE_NOTIFICATION').required().example('/createNotification').default('/createNotification').asString(),
 };
 
 export const MS_PORTS: IMsPorts = {

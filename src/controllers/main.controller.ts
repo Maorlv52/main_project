@@ -6,6 +6,8 @@ import { sendAxiosHttpRequest } from '../helperFunctions/axiosFunctions';
 import { EBaseUrls } from '../enums/baseUrlEnums';
 import { EHttpRequestMethods } from '../enums/httpEnums';
 import { IGetFunnyTranslationPayload } from '../interfaces/payload.interface';
+import { ICreateNotification } from '../interfaces/requests.interface';
+import { NOTIFICATION_ENDPOINTS, URL_CONFIG } from '../configs/config';
 
 export default class MainController {
 	private usersQueries: IQueriesUsers;
@@ -17,23 +19,59 @@ export default class MainController {
 
 	async createUser(data: IPartialUsersModel) {
 		try {
-			return await this.usersQueries.createNewUser(data);
+			const newUser =  await this.usersQueries.createNewUser(data);
+
+			if (!newUser) {
+				throw new Error('User not created');
+			}
+
+			await this.createUserNotification({
+				name: newUser.name,
+				email: newUser.email,
+				status: newUser.status,
+				notificationName: 'UserCreated',
+				content: 'User created'
+			});
+			
+			
+
+			return newUser;
 		} catch (e: any) {
 			logger.error(`[mainController](createUser): error: ${e.message}`);
 			throw new Error(e.message);
 		}
 	}
-
-	async getFunnyTranslation(data: IGetFunnyTranslationPayload) {
+	
+	async createUserNotification(data: ICreateNotification) {
 		try {
-			return sendAxiosHttpRequest({
-				url: EBaseUrls.EXAMPLE,
+
+			const { name, email, status, notificationName, content } = data;
+			
+			const msUpdate = sendAxiosHttpRequest({
+				url: URL_CONFIG.NOTIFICATION_URL,
+				endpoint: NOTIFICATION_ENDPOINTS.CREATE_NOTIFICATION,
 				method: EHttpRequestMethods.POST,
-				payload: data.text,
+				payload: { name, email, status, notificationName, content },
 			});
+
+			return msUpdate;
+
 		} catch (e: any) {
-			logger.error(`[mainController](getFunnyTranslation): error: ${e.message}`);
+			logger.error(`[mainController](createUserNotification): error: ${e.message}`);
 			throw new Error(e.message);
 		}
 	}
+
+	// async getFunnyTranslation(data: IGetFunnyTranslationPayload) {
+	// 	try {
+	// 		return sendAxiosHttpRequest({
+	// 			url: EBaseUrls.EXAMPLE,
+	// 			method: EHttpRequestMethods.POST,
+	// 			payload: data.text,
+	// 		});
+	// 	} catch (e: any) {
+	// 		logger.error(`[mainController](getFunnyTranslation): error: ${e.message}`);
+	// 		throw new Error(e.message);
+	// 	}
+	// }
 }
