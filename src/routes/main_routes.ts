@@ -2,7 +2,7 @@ import { Router, Request, Response } from 'express';
 import MainController from '../controllers/main.controller';
 import logger from '../configs/logger';
 import joiValidator from '../middlewares/validate';
-import { aboutSchema, calculateSchema, createUserSchema, getFunnyTranslationSchema } from '../validators/schemas/main_routes';
+import { createUserSchema, getFunnyTranslationSchema } from '../validators/schemas/main_routes';
 
 const router = Router();
 const main = new MainController();

@@ -1,14 +1,13 @@
 import mongoose from 'mongoose';
 import logger from './logger';
 import { MONGO_URI_ADDRESS } from './config';
-// import logger from '../logger.js';
 
 const connectDB = async () => {
 	const mongoURI = process.env.MONGO_URI || MONGO_URI_ADDRESS;
 
 	try {
 		await mongoose.connect(mongoURI, {
-			serverSelectionTimeoutMS: 10000, // Wait for MongoDB to respond for 10 seconds
+			serverSelectionTimeoutMS: 10000,
 		});
 		logger.info(`===> MongoDB connected successfully to: ${mongoURI}`);
 	} catch (err) {
@@ -21,5 +20,4 @@ const connectDB = async () => {
 	}
 };
 
-// Automatically call connectDB to establish the connection
 export default connectDB;

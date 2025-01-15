@@ -2,11 +2,9 @@ import logger from '../configs/logger';
 import { IPartialUsersModel } from '../interfaces/interfaces';
 import UsersQueries from '../services/db_query/usersQueries';
 import { IQueriesUsers } from '../interfaces/queriesUsers';
-import axios from 'axios';
-import https from 'https';
-import { disableSSLValidation } from '../helperFunctions/functions';
 import { sendAxiosHttpRequest } from '../helperFunctions/axiosFunctions';
 import { EBaseUrls } from '../enums/baseUrlEnums';
+import { EHttpRequestMethods } from '../enums/httpEnums';
 
 export default class MainController {
 	private usersQueries: IQueriesUsers;
@@ -26,7 +24,11 @@ export default class MainController {
 
 	async getFunnyTranslation(data: any) {
 		try {
-			return sendAxiosHttpRequest(EBaseUrls.EXAMPLE, data);
+			return sendAxiosHttpRequest({
+				url: EBaseUrls.EXAMPLE,
+				method: EHttpRequestMethods.POST,
+				payload: data.text,
+			});
 		} catch (e: any) {
 			logger.error(`[mainController](getFunnyTranslation): error: ${e.message}`);
 			throw new Error(e.message);
