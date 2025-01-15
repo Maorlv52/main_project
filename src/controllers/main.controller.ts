@@ -1,10 +1,11 @@
 import logger from '../configs/logger';
-import { IPartialUsersModel } from '../interfaces/interfaces';
+import { IPartialUsersModel } from '../interfaces/usersModel.interfaces';
 import UsersQueries from '../services/db_query/usersQueries';
 import { IQueriesUsers } from '../interfaces/queriesUsers';
 import { sendAxiosHttpRequest } from '../helperFunctions/axiosFunctions';
 import { EBaseUrls } from '../enums/baseUrlEnums';
 import { EHttpRequestMethods } from '../enums/httpEnums';
+import { IGetFunnyTranslationPayload } from '../interfaces/payload.interface';
 
 export default class MainController {
 	private usersQueries: IQueriesUsers;
@@ -22,7 +23,7 @@ export default class MainController {
 		}
 	}
 
-	async getFunnyTranslation(data: any) {
+	async getFunnyTranslation(data: IGetFunnyTranslationPayload) {
 		try {
 			return sendAxiosHttpRequest({
 				url: EBaseUrls.EXAMPLE,

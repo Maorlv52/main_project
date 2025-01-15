@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import { IUsersModel } from '../interfaces/interfaces';
+import { IUsersModel } from '../interfaces/usersModel.interfaces';
 import { EStatuses } from '../enums/usersEnums';
 
 const usersSchema = new mongoose.Schema(

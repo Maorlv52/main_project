@@ -1,4 +1,4 @@
-import { IPartialUsersModel } from '../../interfaces/interfaces';
+import { IPartialUsersModel } from '../../interfaces/usersModel.interfaces';
 import mongoose from 'mongoose';
 import users from '../../models/users.model';
 import logger from '../../configs/logger';
