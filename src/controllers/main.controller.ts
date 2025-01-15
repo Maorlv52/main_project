@@ -14,6 +14,7 @@ export default class MainController {
 		this.usersQueries = new UsersQueries();
 	}
 
+
 	async createUser(data: IPartialUsersModel) {
 		try {
 			return await this.usersQueries.createNewUser(data);
