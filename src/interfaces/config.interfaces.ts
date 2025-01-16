@@ -13,4 +13,5 @@ export interface IMsPorts {
 
 export interface IConstants {
 	MAIN_PORT: number;
+	AXIOS_CONFIG: { headers: object };
 }

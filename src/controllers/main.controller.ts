@@ -3,9 +3,7 @@ import { IPartialUsersModel } from '../interfaces/usersModel.interfaces';
 import UsersQueries from '../services/db_query/usersQueries';
 import { IQueriesUsers } from '../interfaces/queriesUsers';
 import { sendAxiosHttpRequest } from '../helperFunctions/axiosFunctions';
-import { EBaseUrls } from '../enums/baseUrlEnums';
 import { EHttpRequestMethods } from '../enums/httpEnums';
-import { IGetFunnyTranslationPayload } from '../interfaces/payload.interface';
 import { ICreateNotification } from '../interfaces/requests.interface';
 import { NOTIFICATION_ENDPOINTS, URL_CONFIG } from '../configs/config';
 
@@ -16,10 +14,9 @@ export default class MainController {
 		this.usersQueries = new UsersQueries();
 	}
 
-
 	async createUser(data: IPartialUsersModel) {
 		try {
-			const newUser =  await this.usersQueries.createNewUser(data);
+			const newUser = await this.usersQueries.createNewUser(data);
 
 			if (!newUser) {
 				throw new Error('User not created');
@@ -30,22 +27,17 @@ export default class MainController {
 				email: newUser.email,
 				status: newUser.status,
 				notificationName: 'UserCreated',
-				content: 'User created'
+				content: 'User created',
 			});
-			
-			
-
 		} catch (e: any) {
 			logger.error(`[mainController](createUser): error: ${e.message}`);
 			throw new Error(e.message);
 		}
 	}
-	
+
 	async createUserNotification(data: ICreateNotification) {
 		try {
-
 			const { name, email, status, notificationName, content } = data;
-
 
 			console.log(name, email, status, notificationName, content);
 			const msUpdate = sendAxiosHttpRequest({
@@ -56,7 +48,6 @@ export default class MainController {
 			});
 
 			return msUpdate;
-
 		} catch (e: any) {
 			logger.error(`[mainController](createUserNotification): error: ${e.message}`);
 			throw new Error(e.message);
