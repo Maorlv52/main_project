@@ -6,6 +6,7 @@ import { sendAxiosHttpRequest } from '../helperFunctions/axiosFunctions';
 import { EHttpRequestMethods } from '../enums/httpEnums';
 import { ICreateNotification } from '../interfaces/requests.interface';
 import { NOTIFICATION_ENDPOINTS, URL_CONFIG } from '../configs/config';
+import { throwCustomError } from '../helperFunctions/errorFunctions';
 
 export default class MainController {
 	private usersQueries: IQueriesUsers;
@@ -19,6 +20,7 @@ export default class MainController {
 			const newUser = await this.usersQueries.createNewUser(data);
 
 			if (!newUser) {
+				logger.error(`[mainController](createUser): error: User not created`);
 				throw new Error('User not created');
 			}
 
@@ -30,8 +32,7 @@ export default class MainController {
 				content: 'User created',
 			});
 		} catch (e: any) {
-			logger.error(`[mainController](createUser): error: ${e.message}`);
-			throw new Error(e.message);
+			throwCustomError(e.message);
 		}
 	}
 
@@ -49,21 +50,7 @@ export default class MainController {
 
 			return msUpdate;
 		} catch (e: any) {
-			logger.error(`[mainController](createUserNotification): error: ${e.message}`);
-			throw new Error(e.message);
+			throwCustomError(e.message);
 		}
 	}
-
-	// async getFunnyTranslation(data: IGetFunnyTranslationPayload) {
-	// 	try {
-	// 		return sendAxiosHttpRequest({
-	// 			url: EBaseUrls.EXAMPLE,
-	// 			method: EHttpRequestMethods.POST,
-	// 			payload: data.text,
-	// 		});
-	// 	} catch (e: any) {
-	// 		logger.error(`[mainController](getFunnyTranslation): error: ${e.message}`);
-	// 		throw new Error(e.message);
-	// 	}
-	// }
 }
