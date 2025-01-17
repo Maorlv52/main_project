@@ -20,8 +20,8 @@ export default class MainController {
 			const newUser = await this.usersQueries.createNewUser(data);
 
 			if (!newUser) {
-				logger.error(`[mainController](createUser): error: User not created`);
-				throw new Error('User not created');
+
+				throw throwCustomError(`[mainController](createUser): User not created`);
 			}
 
 			return await this.createUserNotification({
@@ -32,7 +32,7 @@ export default class MainController {
 				content: 'User created',
 			});
 		} catch (e: any) {
-			throwCustomError(e.message);
+			throwCustomError(`mainController](createUser) ${e.message}`);
 		}
 	}
 
@@ -50,7 +50,7 @@ export default class MainController {
 
 			return msUpdate;
 		} catch (e: any) {
-			throwCustomError(e.message);
+			throwCustomError(`mainController](createUserNotification) ${e.message}`);
 		}
 	}
 }
