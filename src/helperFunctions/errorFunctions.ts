@@ -1,6 +1,7 @@
 import logger from '../configs/logger';
+import { ELogsIntro } from '../enums/logsEnum';
 
 export const throwCustomError = (logMessage: string) => {
-	logger.error(logMessage);
-	throw new Error(`Error ${logMessage.split('): ')[1]?.trim() || 'Unknown error occurred'}`);
+	logger.error(`${ELogsIntro.ERROR_FUNCTIONS} ${logMessage}`);
+	throw new Error(`${ELogsIntro.ERROR_FUNCTIONS} ${logMessage.split('): ')[1]?.trim() || 'Unknown error occurred'}`);
 };

@@ -7,12 +7,15 @@ import { EHttpRequestMethods } from '../enums/httpEnums';
 import { ICreateNotification } from '../interfaces/requests.interface';
 import { NOTIFICATION_ENDPOINTS, URL_CONFIG } from '../configs/config';
 import { throwCustomError } from '../helperFunctions/errorFunctions';
+import { ELogsIntro } from '../enums/logsEnum';
 
 export default class MainController {
 	private usersQueries: IQueriesUsers;
+	private readonly logIntro: string;
 
 	constructor() {
 		this.usersQueries = new UsersQueries();
+		this.logIntro = ELogsIntro.MAIN_CONTROLLER;
 	}
 
 	async createUser(data: IPartialUsersModel) {
@@ -21,7 +24,7 @@ export default class MainController {
 
 			if (!newUser) {
 
-				throw throwCustomError(`[mainController](createUser): User not created`);
+				throw throwCustomError(`${this.logIntro}(createUser): User not created`);
 			}
 
 			return await this.createUserNotification({
@@ -32,7 +35,7 @@ export default class MainController {
 				content: 'User created',
 			});
 		} catch (e: any) {
-			throwCustomError(`mainController](createUser) ${e.message}`);
+			throwCustomError(`${this.logIntro}(createUserNotification) ${e.message}`);
 		}
 	}
 
@@ -50,7 +53,7 @@ export default class MainController {
 
 			return msUpdate;
 		} catch (e: any) {
-			throwCustomError(`mainController](createUserNotification) ${e.message}`);
+			throwCustomError(`${this.logIntro}(createUserNotification) ${e.message}`);
 		}
 	}
 }
