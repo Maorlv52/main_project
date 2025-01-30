@@ -23,7 +23,6 @@ export default class MainController {
 			const newUser = await this.usersQueries.createNewUser(data);
 
 			if (!newUser) {
-
 				throw throwCustomError(`${this.logIntro}(createUser): User not created`);
 			}
 
